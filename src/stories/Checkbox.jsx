@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { themeColors } from "../styles/colors";
 
 const CheckboxContainer = styled.label`
@@ -9,7 +9,6 @@ const CheckboxContainer = styled.label`
   position: relative;
   cursor: pointer;
   color: ${(props) => props.theme.textColor};
-
   margin-right: 8px;
 
   &::after {
@@ -30,6 +29,15 @@ const CheckboxContainer = styled.label`
   &:last-child {
     margin-right: 0;
   }
+
+  ${(props) =>
+    props.checked &&
+    css`
+      &::after {
+        background-color: ${(props) => props.theme.primaryColor};
+        border-color: ${(props) => props.theme.checkedBoxBorderColor};    
+      }
+    `}
 `;
 
 const CheckboxInput = styled.input`
@@ -45,7 +53,7 @@ const Checkbox = ({ label, checked, onChange, theme }) => {
   const colors = themeColors[theme];
 
   return (
-    <CheckboxContainer theme={colors}>
+    <CheckboxContainer theme={colors} checked={checked}>
       <CheckboxInput type="checkbox" checked={checked} onChange={onChange} />
       <CheckboxText>{label}</CheckboxText>
     </CheckboxContainer>

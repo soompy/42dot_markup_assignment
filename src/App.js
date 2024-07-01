@@ -27,7 +27,7 @@ function App() {
           Toggle to {theme === "light" ? "Dark" : "Light"} Theme
         </button>
         <Checkbox
-          label=""
+          label="히히"
           checked={isChecked}
           onChange={handleCheckboxChange}
           theme={theme}
