@@ -7,7 +7,7 @@ export default {
   parameters: {
     docs: {
       description: {
-        component: "input 디자인 토큰",
+        component: "input UI",
       },
     },
   },

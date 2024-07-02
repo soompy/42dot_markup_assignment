@@ -4,17 +4,23 @@ import { GlobalStyle } from "./shared/global";
 import { lightTheme, darkTheme } from "./styles/theme";
 import Input from "./stories/Input";
 import Checkbox from "./stories/Checkbox";
+import Switch from "./stories/Switch";
 
 function App() {
   const [theme, setTheme] = useState("light");
   const [isChecked, setIsChecked] = useState(false);
-  
+  const [isSwitchChecked, setIsSwitchChecked] = useState(false);
+
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+  };
+
+  const handleSwitchChange = () => {
+    setIsSwitchChecked(!isSwitchChecked);
   };
 
   const handleReset = () => {
@@ -25,6 +31,7 @@ function App() {
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <div style={{ padding: "20px" }}>
         <GlobalStyle />
+
         <button onClick={toggleTheme}>
           Toggle to {theme === "light" ? "Dark" : "Light"} Theme
         </button>
@@ -46,6 +53,12 @@ function App() {
           label="히히"
           checked={isChecked}
           onChange={handleCheckboxChange}
+          theme={theme}
+        />
+
+        <Switch
+          checked={isSwitchChecked}
+          onChange={handleSwitchChange}
           theme={theme}
         />
       </div>
