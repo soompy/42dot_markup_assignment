@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./shared/global";
-import AdminPage from "./pages/admin/adminPage";
-import Checkbox from "./stories/Checkbox";
 import { lightTheme, darkTheme } from "./styles/theme";
+import Input from "./stories/Input";
+import Checkbox from "./stories/Checkbox";
 
 function App() {
   const [theme, setTheme] = useState("light");
   const [isChecked, setIsChecked] = useState(false);
-
+  
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
@@ -17,15 +17,31 @@ function App() {
     setIsChecked(!isChecked);
   };
 
+  const handleReset = () => {
+    console.log("Input has been reset");
+  };
+
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <div style={{ padding: "20px" }}>
         <GlobalStyle />
-        <AdminPage />
-
         <button onClick={toggleTheme}>
           Toggle to {theme === "light" ? "Dark" : "Light"} Theme
         </button>
+
+        <Input
+          placeholder="Light Theme Input"
+          theme={theme}
+          resettable
+          onReset={handleReset}
+        />
+        <Input
+          placeholder="Dark Theme Input"
+          theme={theme}
+          resettable
+          onReset={handleReset}
+        />
+
         <Checkbox
           label="히히"
           checked={isChecked}

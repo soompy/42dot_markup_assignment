@@ -22,7 +22,7 @@ const CheckboxContainer = styled.label`
     width: 16px;
     height: 16px;
     background-color: ${(props) => props.theme.boxBackgroundColor};
-    border: 3px solid ${(props) => props.theme.boxBorderColor};
+    border: 3px solid ${(props) => props.theme.grayColor};
     border-radius: 5px;
   }
 
@@ -35,7 +35,7 @@ const CheckboxContainer = styled.label`
     css`
       &::after {
         background-color: ${(props) => props.theme.primaryColor};
-        border-color: ${(props) => props.theme.checkedBoxBorderColor};    
+        border-color: ${(props) => props.theme.checkedgrayColor};    
       }
     `}
 `;
