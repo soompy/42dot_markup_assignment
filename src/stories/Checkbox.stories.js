@@ -6,12 +6,14 @@ import Checkbox from "./Checkbox";
 export default {
   title: "Design System/Checkbox",
   component: Checkbox,
+  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: "checkbox UI",
       },
     },
+    layout: 'centered',
   },
   argTypes: {
     theme: {

@@ -4,12 +4,14 @@ import Switch from './Switch';
 export default {
   title: 'Design System/Switch',
   component: Switch,
+  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: "switch UI",
       },
     },
+    layout: 'centered',
   },
 };
 

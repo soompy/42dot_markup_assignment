@@ -4,12 +4,14 @@ import Input from "./Input";
 export default {
   title: "Design System/Input",
   component: Input,
+  tags: ['autodocs'],
   parameters: {
     docs: {
       description: {
         component: "input UI",
       },
     },
+    layout: 'centered',
   },
 };
 
