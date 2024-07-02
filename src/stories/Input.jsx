@@ -10,10 +10,11 @@ const InputContainer = styled.div`
 
 const StyledInput = styled.input`
   padding: 8px;
-  border: 1px solid ${(props) => props.theme.primaryLightColor};
+  border: 2px solid ${(props) => props.theme.primaryLightColor};
   background-color: ${(props) => props.theme.boxBackgroundColor};
+  color: ${(props) => props.theme.textColor};
   border-radius: 4px;
-  margin-right: 12px;
+  margin-left: 12px;
 
   &:hover {
     border-color: ${(props) => props.theme.primaryColor};
@@ -26,16 +27,19 @@ const StyledInput = styled.input`
 
   &:disabled {
     background-color: ${(props) => props.theme.grayColor};
+    border-color: ${(props) => props.theme.lightGrayColor};
   }
 
-  &:last-child {
-    margin-right: 0;
+  &:first-child {
+    margin-left: 0;
   }
 
   ${(props) =>
     props.isValid !== undefined &&
     css`
-      border-color: ${props.isValid ? "green" : "red"};
+      border-color: ${props.isValid
+        ? props.theme.validColor
+        : props.theme.invalidColor};
     `}
 `;
 
@@ -43,15 +47,26 @@ const ResetButton = styled.button`
   position: absolute;
   right: 10px;
   top: 50%;
+  width: 20px;
+  height: 20px;
   transform: translateY(-50%);
-  background: none;
+  background: ${(props) =>
+    props.isValid === undefined
+      ? props.theme.primaryColor
+      : props.isValid
+        ? props.theme.validColor
+        : props.theme.invalidColor};
+  color: ${(props) => props.theme.grayColor};
+  border-radius: 50%;
   border: none;
   cursor: pointer;
+  font-size: 14px;
 `;
 
 const ValidationMessage = styled.span`
   display: block;
-  color: ${(props) => (props.isValid ? "green" : "red")};
+  color: ${(props) =>
+    props.isValid ? props.theme.validColor : props.theme.invalidColor};
   font-size: 12px;
   margin-top: 6px;
 `;
@@ -89,14 +104,20 @@ const Input = ({
         disabled={disabled}
         {...props}
         isValid={isValid}
+        theme={colors}
       />
       {resettable && value && (
-        <ResetButton type="button" onClick={handleReset}>
+        <ResetButton
+          type="button"
+          onClick={handleReset}
+          isValid={isValid}
+          theme={colors}
+        >
           X
         </ResetButton>
       )}
       {isValid !== undefined && (
-        <ValidationMessage isValid={isValid}>
+        <ValidationMessage isValid={isValid} theme={colors}>
           {isValid ? "" : validationMessage}
         </ValidationMessage>
       )}
