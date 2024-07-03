@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyle } from "./shared/global";
 import { lightTheme, darkTheme } from "./styles/theme";
+import AdminPage from "./pages/admin/adminPage";
 import Input from "./stories/Input";
 import Checkbox from "./stories/Checkbox";
 import Switch from "./stories/Switch";
+
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -61,6 +63,8 @@ function App() {
           onChange={handleSwitchChange}
           theme={theme}
         />
+        
+        <AdminPage/>
       </div>
     </ThemeProvider>
   );

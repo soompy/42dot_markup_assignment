@@ -1,4 +1,6 @@
 /** @type { import('@storybook/react').Preview } */
+import { fontSizes } from "../src/tokens";
+
 const preview = {
   parameters: {
     controls: {
@@ -6,6 +8,9 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+    },
+    designTokens: {
+      fontSizes,
     },
   },
 };
