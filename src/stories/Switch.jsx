@@ -55,7 +55,7 @@ const Slider = styled.span`
     `}
 `;
 
-const Switch = ({ checked, onChange, theme }) => {
+export const Switch = ({ checked, onChange, theme }) => {
   const colors = themeColors[theme];
 
   return (

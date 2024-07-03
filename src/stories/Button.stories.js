@@ -1,48 +1,130 @@
-import { fn } from '@storybook/test';
-import { Button } from './Button';
+import React from "react";
+import Button from "./Button";
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 export default {
-  title: 'Design System/Button',
+  title: "Design System/Button",
   component: Button,
+  tags: ["autodocs"],
   parameters: {
-    // Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
-    layout: 'centered',
+    docs: {
+      description: {
+        component: "Button UI",
+      },
+    },
+    layout: "centered",
   },
-  // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
-  tags: ['autodocs'],
-  // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
-    backgroundColor: { control: 'color' },
-  },
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: { onClick: fn() },
-};
-
-// More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
-export const Primary = {
-  args: {
-    primary: true,
-    label: 'Button',
-  },
-};
-
-export const Secondary = {
-  args: {
-    label: 'Button',
-  },
-};
-
-export const Large = {
-  args: {
-    size: 'large',
-    label: 'Button',
+    size: {
+      control: { type: "select", options: ["small", "medium", "large"] },
+    },
+    color: {
+      control: {
+        type: "select",
+        options: ["primaryColor", "secondaryColor", "boxBackgroundColor"],
+      },
+    },
+    theme: {
+      control: { type: "select", options: ["light", "dark"] },
+    },
+    textColor: {
+      control: "color",
+    },
+    border: {
+      control: "boolean",
+    },
   },
 };
 
-export const Small = {
-  args: {
-    size: 'small',
-    label: 'Button',
-  },
+const ButtonCp = (args) => <Button {...args}>Button</Button>;
+
+export const PrimarySmall = ButtonCp.bind({});
+PrimarySmall.args = {
+  size: "small",
+  color: "primaryColor",
+  theme: "light",
+  textColor: "boxBackgroundColor",
+  border: false,
+};
+
+export const PrimaryMedium = ButtonCp.bind({});
+PrimaryMedium.args = {
+  size: "medium",
+  color: "primaryColor",
+  theme: "light",
+  textColor: "boxBackgroundColor",
+  border: false,
+};
+
+export const PrimaryLarge = ButtonCp.bind({});
+PrimaryLarge.args = {
+  size: "large",
+  color: "primaryColor",
+  theme: "light",
+  textColor: "boxBackgroundColor",
+  border: false,
+};
+
+export const SecondarySmall = ButtonCp.bind({});
+SecondarySmall.args = {
+  size: "small",
+  color: "secondaryColor",
+  theme: "light",
+  textColor: "textColor",
+  border: false,
+};
+
+export const SecondaryMedium = ButtonCp.bind({});
+SecondaryMedium.args = {
+  size: "medium",
+  color: "secondaryColor",
+  theme: "light",
+  textColor: "textColor",
+  border: false,
+};
+
+export const SecondaryLarge = ButtonCp.bind({});
+SecondaryLarge.args = {
+  size: "large",
+  color: "secondaryColor",
+  theme: "light",
+  textColor: "textColor",
+  border: false,
+};
+
+export const BorderLarge = ButtonCp.bind({});
+BorderLarge.args = {
+  size: "small",
+  color: "boxBackgroundColor",
+  theme: "light",
+  textColor: "textColor",
+  border: true,
+  borderColor: "lightGrayColor",
+};
+
+export const PrimarySmallDark = ButtonCp.bind({});
+PrimarySmallDark.args = {
+  size: "small",
+  color: "primaryColor",
+  theme: "dark",
+  textColor: "boxBackgroundColor",
+  border: true,
+};
+
+export const SecondaryMediumDark = ButtonCp.bind({});
+SecondaryMediumDark.args = {
+  size: "medium",
+  color: "secondaryColor",
+  theme: "dark",
+  textColor: "boxBackgroundColor",
+  border: true,
+};
+
+export const BorderLargeDark = ButtonCp.bind({});
+BorderLargeDark.args = {
+  size: "large",
+  color: "boxBackgroundColor",
+  theme: "dark",
+  textColor: "textColor",
+  border: true,
+  borderColor: "lightGrayColor",
 };

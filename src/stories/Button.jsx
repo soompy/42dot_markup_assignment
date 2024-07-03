@@ -1,50 +1,78 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import './button.css';
+import React from "react";
+import PropTypes from "prop-types";
+import styled, { css } from "styled-components";
+import { themeColors } from "../styles/colors";
 
-/**
- * Primary UI component for user interaction
- */
-export const Button = ({ primary, backgroundColor, size, label, ...props }) => {
-  const mode = primary ? 'storybook-button--primary' : 'storybook-button--secondary';
+const sizes = {
+  small: css`
+    padding: 6px 10px;
+    font-size: 12px;
+  `,
+  medium: css`
+    padding: 8px 16px;
+    font-size: 16px;
+  `,
+  large: css`
+    padding: 12px 24px;
+    font-size: 20px;
+  `,
+};
+
+const StyledButton = styled.button.attrs(
+  ({ border, textColor, borderColor }) => ({
+    border: border ? "true" : "false",
+    style: {
+      color: textColor,
+      borderColor: borderColor,
+    },
+  })
+)`
+  border: ${({ border }) => (border === "true" ? "2px solid" : "none")};
+  border-radius: 8px;
+  cursor: pointer;
+  ${({ size }) => sizes[size]}
+  background-color: ${({ color, theme }) => theme[color]};
+
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+const Button = ({
+  size = "medium",
+  color = "primaryColor",
+  theme = "light",
+  textColor = "",
+  border = false,
+  borderColor,
+  children,
+  ...props
+}) => {
+  const colors = themeColors[theme];
+
   return (
-    <button
-      type="button"
-      className={['storybook-button', `storybook-button--${size}`, mode].join(' ')}
-      style={backgroundColor && { backgroundColor }}
+    <StyledButton
+      size={size}
+      color={color}
+      theme={colors}
+      textColor={textColor || colors.boxBackgroundColor}
+      border={border ? "true" : "false"}
+      borderColor={borderColor}
       {...props}
     >
-      {label}
-    </button>
+      {children}
+    </StyledButton>
   );
 };
 
 Button.propTypes = {
-  /**
-   * Is this the principal call to action on the page?
-   */
-  primary: PropTypes.bool,
-  /**
-   * What background color to use
-   */
-  backgroundColor: PropTypes.string,
-  /**
-   * How large should the button be?
-   */
-  size: PropTypes.oneOf(['small', 'medium', 'large']),
-  /**
-   * Button contents
-   */
-  label: PropTypes.string.isRequired,
-  /**
-   * Optional click handler
-   */
-  onClick: PropTypes.func,
+  size: PropTypes.oneOf(["small", "medium", "large"]),
+  color: PropTypes.string,
+  theme: PropTypes.oneOf(["light", "dark"]),
+  textColor: PropTypes.string,
+  border: PropTypes.bool,
+  borderColor: PropTypes.string,
+  children: PropTypes.node.isRequired,
 };
 
-Button.defaultProps = {
-  backgroundColor: null,
-  primary: false,
-  size: 'medium',
-  onClick: undefined,
-};
+export default Button;

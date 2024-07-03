@@ -49,7 +49,7 @@ const CheckboxText = styled.span`
   margin-left: 4px;
 `;
 
-const Checkbox = ({ label, checked, onChange, theme }) => {
+export const Checkbox = ({ label, checked, onChange, theme }) => {
   const colors = themeColors[theme];
 
   return (

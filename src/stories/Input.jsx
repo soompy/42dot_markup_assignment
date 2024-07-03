@@ -71,7 +71,7 @@ const ValidationMessage = styled.span`
   margin-top: 6px;
 `;
 
-const Input = ({
+export const Input = ({
   placeholder = "텍스트를 입력하세요.",
   disabled = false,
   isValid,
