@@ -26,8 +26,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Container = styled.div`
   position: relative;
-  max-width: 1000px;
-  min-width: 
+  max-width: 640px;
   width: 100%;
   height: 100%;
   padding: ${(props) => paddings[props.paddingSize || "xLarge"]};
@@ -57,6 +56,8 @@ const Title = styled.h2`
 `;
 
 const BoxContainer = styled.section`
+  display: flex;
+  flex-direction: column;
   padding: ${(props) => paddings[props.paddingSize || "medium"]};
 `;
 
@@ -138,8 +139,7 @@ const AdminPage = () => {
                 <Button
                   size="large"
                   color="boxBackgroundColor"
-                  theme={theme}
-                  textColor="boxBackgroundColor"
+                  textColor={themeColors[theme].boxBackgroundColor} // textColor 직접 전달
                   border={true}
                   borderColor="lightGrayColor"
                 >
@@ -149,7 +149,6 @@ const AdminPage = () => {
                 <Button
                   size="large"
                   color="primaryColor"
-                  theme={theme}
                   border={false}
                 >
                   등록

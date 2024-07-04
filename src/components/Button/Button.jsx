@@ -25,7 +25,8 @@ const sizes = {
 
 const StyledButton = styled.button`
   margin-left: ${(props) => margins[props.marginSize || "medium"]};
-  border: ${(props) => props.hasBorder ? `2px solid ${props.borderColor}` : 'none'};
+  border: ${(props) =>
+    props.hasBorder ? `2px solid ${props.borderColor}` : "none"};
   border-radius: 8px;
   cursor: pointer;
   ${({ size }) => sizes[size]}
@@ -54,7 +55,7 @@ const Button = ({
   size = "medium",
   color = "primaryColor",
   theme = "light",
-  textColor = "",    
+  textColor = "",
   border = false,
   borderColor = "",
   children,
@@ -67,9 +68,9 @@ const Button = ({
       size={size}
       color={color}
       theme={colors}
-      textColor={textColor}
       hasBorder={border}
       borderColor={borderColor}
+      textColor={textColor}
       {...props}
     >
       {children}

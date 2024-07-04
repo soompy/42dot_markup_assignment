@@ -9,23 +9,20 @@ import ListInsideItem from "./ListInsideItem";
 
 const ListItemWrapper = styled.li`
   display: grid;
-  width: ${layouts.grid.columnWidths[3]};
+  width: ${layouts.grid.columnWidths[1]};
   padding: ${layouts.grid.gutter};
   background-color: ${(props) => props.theme.grayColor};
   color: ${(props) => props.theme.textColor};
-
-  @media (min-width: ${layouts.grid.breakpoints.tablet}) {
-    width: ${layouts.grid.columnWidths[2]};
-  }
-
-  @media (min-width: ${layouts.grid.breakpoints.pc}) {
-    width: ${layouts.grid.columnWidths[1]};
-  }
 `;
 
 const ListHead = styled.div`
   padding-bottom: ${(props) => paddings[props.paddingSize || "medium"]};
   border-bottom: 1px solid ${(props) => props.theme.textColor};
+
+  @media (max-width: ${layouts.grid.breakpoints.tablet}) {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 `;
 
 export const ListItem = ({ item, checked, onChange, theme, paddingSize }) => {
@@ -37,7 +34,7 @@ export const ListItem = ({ item, checked, onChange, theme, paddingSize }) => {
           checked={checked}
           onChange={() => onChange(item)}
           theme={theme}
-          marginSize="small"          
+          marginSize="small"
         />
       </ListHead>
       <ListInside paddingSize={paddingSize}>
