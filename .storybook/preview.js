@@ -1,5 +1,14 @@
-/** @type { import('@storybook/react').Preview } */
 import { fontSizes } from "../src/tokens";
+import GlobalStyles from "../src/shared/global";
+
+export const decorators = [
+  (Story) => (
+    <>
+      <GlobalStyles />
+      <Story />
+    </>
+  ),
+];
 
 const preview = {
   parameters: {

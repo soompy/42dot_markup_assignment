@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyle } from "./shared/global";
+import GlobalStyles from "./shared/global";
 import { lightTheme, darkTheme } from "./styles/theme";
 import AdminPage from "./pages/admin/adminPage";
 import Input from "./stories/Input";
 import Checkbox from "./stories/Checkbox";
 import Switch from "./stories/Switch";
-
 
 function App() {
   const [theme, setTheme] = useState("light");
@@ -32,7 +31,7 @@ function App() {
   return (
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <div style={{ padding: "20px" }}>
-        <GlobalStyle />
+        <GlobalStyles />
 
         <button onClick={toggleTheme}>
           Toggle to {theme === "light" ? "Dark" : "Light"} Theme
