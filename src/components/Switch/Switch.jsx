@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { themeColors } from "../../styles/colors";
+import { margins } from "../../tokens/margins";
 
 const SwitchContainer = styled.label`
   display: inline-flex;
@@ -9,9 +10,9 @@ const SwitchContainer = styled.label`
   position: relative;
   cursor: pointer;
   color: ${(props) => props.theme.textColor};
-  margin-right: 8px;
+  margin-right: ${(props) => margins[props.marginSize || "medium"]};;
 
-  &:last-child {
+  &:last-of-type {
     margin-right: 0;
   }
 `;
@@ -25,8 +26,8 @@ const SwitchInput = styled.input`
 const Slider = styled.span`
   position: relative;
   display: inline-block;
-  width: 34px;
-  height: 20px;
+  width: 64px;
+  height: 30px;
   background-color: ${(props) => props.theme.grayColor};
   border-radius: 20px;
   transition: background-color 0.2s;
@@ -34,12 +35,12 @@ const Slider = styled.span`
   &::before {
     content: "";
     position: absolute;
-    width: 16px;
-    height: 16px;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
     background-color: ${(props) => props.theme.boxBackgroundColor};
-    top: 2px;
-    left: 2px;
+    top: 4px;
+    left: 4px;
     transition: transform 0.2s;
   }
 
@@ -49,7 +50,7 @@ const Slider = styled.span`
       background-color: ${(props) => props.theme.primaryColor};
 
       &::before {
-        transform: translateX(14px);
+        transform: translateX(34px);
         background-color: ${(props) => props.theme.boxBackgroundColor};
       }
     `}

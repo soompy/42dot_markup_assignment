@@ -2,50 +2,61 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { themeColors } from "../../styles/colors";
+import { fontSizes } from "../../tokens/fontSize";
+import { margins } from "../../tokens/margins";
 
 const sizes = {
   small: css`
-    padding: 6px 10px;
-    font-size: 12px;
+    width: 60px;
+    height: 30px;
+    font-size: ${fontSizes.pc.small};
   `,
   medium: css`
-    padding: 8px 16px;
-    font-size: 16px;
+    width: 100px;
+    height: 45px;
+    font-size: ${fontSizes.pc.medium};
   `,
   large: css`
-    padding: 12px 24px;
-    font-size: 20px;
+    width: 130px;
+    height: 50px;
+    font-size: ${fontSizes.pc.large};
   `,
 };
 
-const StyledButton = styled.button.attrs(
-  ({ border, textColor, borderColor }) => ({
-    border: border ? "true" : "false",
-    style: {
-      color: textColor,
-      borderColor: borderColor,
-    },
-  })
-)`
-  border: ${({ border }) => (border === "true" ? "2px solid" : "none")};
+const StyledButton = styled.button`
+  margin-left: ${(props) => margins[props.marginSize || "medium"]};
+  border: ${(props) => props.hasBorder ? `2px solid ${props.borderColor}` : 'none'};
   border-radius: 8px;
   cursor: pointer;
   ${({ size }) => sizes[size]}
   background-color: ${({ color, theme }) => theme[color]};
-  border-color: ${({ borderColor }) => borderColor};
+  color: ${({ textColor, theme }) => textColor || theme.boxBackgroundColor};
+  transition:
+    background-color 0.3s,
+    border-color 0.3s;
 
-  &:hover {
-    opacity: 0.8;
+  &:first-of-type {
+    margin-left: 0;
   }
+  &:hover {
+    opacity: 0.9;
+    border-color: ${({ borderColor }) => borderColor};
+  }
+
+  ${({ hasBorder }) =>
+    hasBorder &&
+    css`
+      border-color: ${({ borderColor }) => borderColor};
+    `}
 `;
 
 const Button = ({
   size = "medium",
   color = "primaryColor",
   theme = "light",
-  textColor = "",
+  textColor = "",    
   border = false,
-  borderColor,
+  borderColor = "",
   children,
   ...props
 }) => {
@@ -56,8 +67,8 @@ const Button = ({
       size={size}
       color={color}
       theme={colors}
-      style={{ color: textColor || colors.boxBackgroundColor }}
-      border={border ? "true" : "false"}
+      textColor={textColor}
+      hasBorder={border}
       borderColor={borderColor}
       {...props}
     >

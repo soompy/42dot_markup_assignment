@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { themeColors } from "../../styles/colors";
 import { margins } from "../../tokens/margins";
 
-const CheckboxContainer = styled.label`
+const CheckboxContainer = styled(({ marginSize, ...rest }) => <label {...rest} />)`
   display: inline-flex;
   align-items: center;
   position: relative;
@@ -45,18 +45,20 @@ const CheckboxInput = styled.input`
   opacity: 0;
 `;
 
-const CheckboxText = styled.span`
+const CheckboxText = styled(({ marginSize, ...rest }) => <span {...rest} />)`
   font-size: 18px;
-  margin-left: ${(props) => margins[props.marginSize] || "6px"};
+  margin-left: ${({ marginSize }) => margins[marginSize] || "6px"};
 `;
 
 export const Checkbox = ({ label, checked, onChange, theme, marginSize }) => {
   const colors = themeColors[theme];
 
   return (
-    <CheckboxContainer theme={colors} checked={checked}>
+    <CheckboxContainer theme={colors} checked={checked} marginSize={marginSize}>
       <CheckboxInput type="checkbox" checked={checked} onChange={onChange} />
-      <CheckboxText marginSize={marginSize}>{label}</CheckboxText>
+      <CheckboxText theme={colors} marginSize={marginSize}>
+        {label}
+      </CheckboxText>
     </CheckboxContainer>
   );
 };

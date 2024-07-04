@@ -24,7 +24,9 @@ const GlobalStyles = createGlobalStyle`
       border: 0;
       font-size: 100%;
       font: inherit;
+      font-family: 'Noto Sans KR', sans-serif;
       vertical-align: baseline;
+      box-sizing: border-box;
   }
 
   article, aside, details, figcaption, figure,
@@ -57,6 +59,10 @@ const GlobalStyles = createGlobalStyle`
   table {
       border-collapse: collapse;
       border-spacing: 0;
+  }
+
+  .bold {
+      font-weight: bold;
   }
 `;
 
