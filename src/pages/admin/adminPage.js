@@ -10,6 +10,8 @@ import { themeColors } from "../../styles/colors";
 import { paddings } from "../../tokens/paddings";
 import InputLabel from "../../components/Label/InputLabel";
 import DivisionLabel from "../../components/Label/DivisionLabel";
+import useWindowWidth from "../../hooks/useWindowWidth";
+import Toast from "../../components/Alert/Toast";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -67,6 +69,12 @@ const BottomContainer = styled.div`
   justify-content: space-between;
 `;
 
+const SwitchContainer = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: ${fontSizes.pc.small};
+`;
+
 const ButtonContainer = styled.div`
   display: flex;
   align-items: center;
@@ -86,6 +94,8 @@ const AdminPage = () => {
     items.reduce((acc, item) => ({ ...acc, [item]: false }), {})
   );
   const [switchChecked, setSwitchChecked] = useState(false);
+  const windowWidth = useWindowWidth();
+  const mobileBreakpoint = parseInt(layouts.grid.breakpoints.mobile);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
@@ -129,11 +139,14 @@ const AdminPage = () => {
 
           <BoxContainer>
             <BottomContainer>
-              <Switch
-                checked={switchChecked}
-                onChange={handleSwitchChange}
-                theme={theme}
-              />
+              <SwitchContainer>
+                <span>반복</span>
+                <Switch
+                  checked={switchChecked}
+                  onChange={handleSwitchChange}
+                  theme={theme}
+                />
+              </SwitchContainer>
 
               <ButtonContainer>
                 <Button
@@ -146,17 +159,16 @@ const AdminPage = () => {
                   취소
                 </Button>
 
-                <Button
-                  size="large"
-                  color="primaryColor"
-                  border={false}
-                >
+                <Button size="large" color="primaryColor" border={false}>
                   등록
                 </Button>
               </ButtonContainer>
             </BottomContainer>
           </BoxContainer>
         </Container>
+        {windowWidth < mobileBreakpoint && (
+          <Toast show={true} message="지원하지 않음" />
+        )}
       </div>
     </ThemeProvider>
   );
