@@ -30,8 +30,8 @@ export const themeColors = {
 
     alertColor: "#FB8558",
 
-    grayColor: "#dddddd99",
-    lightGrayColor: "eeeeee99",
+    grayColor: "#444444",
+    lightGrayColor: "#555555",
 
     textColor: "#ffffff",
     boxBackgroundColor: "#121212",

@@ -1,69 +1,61 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import layouts from "../../tokens/layouts";
 import { fontSizes } from "../../tokens/fontSize";
+import ListContainer from "../../components/List/ListContainer";
+import { themeColors } from "../../styles/colors";
 
-export default function AdminPage() {
-  const Container = styled.div`
-    position: relative;
-    width: 1000px;
-  `;
+const GlobalStyle = createGlobalStyle`
+  body {
+    background-color: ${(props) => props.theme.boxBackgroundColor};
+    color: ${(props) => props.theme.textColor};
+    transition: background-color 0.3s ease, color 0.3s ease;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+`;
 
-  const ListContainer = styled.ul`
-    display: grid;
-    grid-template-columns: repeat(${layouts.grid.columns}, minmax(0, 1fr));
-    gap: ${layouts.grid.gutter};
+const Container = styled.div`
+  position: relative;
+  width: 1000px;
+`;
 
-    @media (min-width: ${layouts.grid.breakpoints.mobile}) {
-      grid-template-columns: repeat(
-        ${layouts.grid.columns},
-        ${layouts.grid.columnWidths[2]}
-      );
-    }
+const Title = styled.h2`
+  font-size: ${fontSizes.mobile.large};
 
-    @media (min-width: ${layouts.grid.breakpoints.tablet}) {
-      grid-template-columns: repeat(
-        ${layouts.grid.columns},
-        ${layouts.grid.columnWidths[3]}
-      );
-    }
+  @media (min-width: ${layouts.grid.breakpoints.tablet}) {
+    font-size: ${fontSizes.tablet.large};
+  }
 
-    @media (min-width: ${layouts.grid.breakpoints.pc}) {
-      grid-template-columns: repeat(
-        ${layouts.grid.columns},
-        ${layouts.grid.columnWidths[4]}
-      );
-    }
-  `;
+  @media (min-width: ${layouts.grid.breakpoints.pc}) {
+    font-size: ${fontSizes.pc.large};
+  }
+`;
 
-  const ListBox = styled.li`
-  
-  `;
+const AdminPage = () => {
+  const items = ["Item 1", "Item 2", "Item 3"];
+  const [theme, setTheme] = useState("light");
 
-  const Title = styled.h2`
-    font-size: ${fontSizes.mobile.large};
-
-    @media (min-width: ${layouts.grid.breakpoints.tablet}) {
-      font-size: ${fontSizes.tablet.large};
-    }
-
-    @media (min-width: ${layouts.grid.breakpoints.pc}) {
-      font-size: ${fontSizes.pc.large};
-    }
-  `;
+  const toggleTheme = () => {
+    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
 
   return (
-    <div>
-      <Container>
-        <Title>Title Text</Title>
+    <ThemeProvider theme={themeColors[theme]}>
+      <button onClick={toggleTheme}>
+        Toggle Theme to {theme === "light" ? "Dark" : "Light"}
+      </button>
+      <GlobalStyle />
+      <div>
+        <Container>
+          <Title>Title Text</Title>
 
-
-        <ListContainer>
-          <ListBox>
-            
-          </ListBox>
-        </ListContainer>
-      </Container>
-    </div>
+          <ListContainer items={items} />
+        </Container>
+      </div>
+    </ThemeProvider>
   );
-}
+};
+
+export default AdminPage;
