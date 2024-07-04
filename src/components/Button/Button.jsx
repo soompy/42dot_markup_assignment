@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
-import { themeColors } from "../styles/colors";
+import { themeColors } from "../../styles/colors";
 
 const sizes = {
   small: css`
@@ -32,6 +32,7 @@ const StyledButton = styled.button.attrs(
   cursor: pointer;
   ${({ size }) => sizes[size]}
   background-color: ${({ color, theme }) => theme[color]};
+  border-color: ${({ borderColor }) => borderColor};
 
   &:hover {
     opacity: 0.8;
@@ -55,7 +56,7 @@ const Button = ({
       size={size}
       color={color}
       theme={colors}
-      textColor={textColor || colors.boxBackgroundColor}
+      style={{ color: textColor || colors.boxBackgroundColor }}
       border={border ? "true" : "false"}
       borderColor={borderColor}
       {...props}

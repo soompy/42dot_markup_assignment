@@ -59,7 +59,9 @@ export default function AdminPage() {
 
 
         <ListContainer>
-          <ListBox></ListBox>
+          <ListBox>
+            
+          </ListBox>
         </ListContainer>
       </Container>
     </div>

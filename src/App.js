@@ -33,7 +33,7 @@ function App() {
       <div style={{ padding: "20px" }}>
         <GlobalStyles />
 
-        <button onClick={toggleTheme}>
+        {/* <button onClick={toggleTheme}>
           Toggle to {theme === "light" ? "Dark" : "Light"} Theme
         </button>
 
@@ -61,7 +61,7 @@ function App() {
           checked={isSwitchChecked}
           onChange={handleSwitchChange}
           theme={theme}
-        />
+        /> */}
         
         <AdminPage/>
       </div>
