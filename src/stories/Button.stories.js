@@ -44,6 +44,8 @@ PrimarySmall.args = {
   theme: "light",
   textColor: "boxBackgroundColor",
   border: false,
+  borderColor: "",
+  children: "Small Primary Button",
 };
 
 export const PrimaryMedium = ButtonCp.bind({});
@@ -53,6 +55,8 @@ PrimaryMedium.args = {
   theme: "light",
   textColor: "boxBackgroundColor",
   border: false,
+  borderColor: "",
+  children: "Medium Primary Button",
 };
 
 export const PrimaryLarge = ButtonCp.bind({});
@@ -62,6 +66,8 @@ PrimaryLarge.args = {
   theme: "light",
   textColor: "boxBackgroundColor",
   border: false,
+  borderColor: "",
+  children: "Large Primary Button",
 };
 
 export const SecondarySmall = ButtonCp.bind({});
@@ -71,6 +77,8 @@ SecondarySmall.args = {
   theme: "light",
   textColor: "textColor",
   border: false,
+  borderColor: "",
+  children: "Small Secondary Button",
 };
 
 export const SecondaryMedium = ButtonCp.bind({});
@@ -80,6 +88,8 @@ SecondaryMedium.args = {
   theme: "light",
   textColor: "textColor",
   border: false,
+  borderColor: "",
+  children: "Medium Secondary Button",
 };
 
 export const SecondaryLarge = ButtonCp.bind({});
@@ -89,16 +99,19 @@ SecondaryLarge.args = {
   theme: "light",
   textColor: "textColor",
   border: false,
+  borderColor: "",
+  children: "Large Secondary Button",
 };
 
 export const BorderLarge = ButtonCp.bind({});
 BorderLarge.args = {
-  size: "small",
+  size: "large",
   color: "boxBackgroundColor",
   theme: "light",
   textColor: "textColor",
   border: true,
   borderColor: "lightGrayColor",
+  children: "Border Large Button",
 };
 
 export const PrimarySmallDark = ButtonCp.bind({});
@@ -107,7 +120,9 @@ PrimarySmallDark.args = {
   color: "primaryColor",
   theme: "dark",
   textColor: "boxBackgroundColor",
-  border: true,
+  border: false,
+  borderColor: "",
+  children: "Dark Button",
 };
 
 export const SecondaryMediumDark = ButtonCp.bind({});
@@ -116,7 +131,9 @@ SecondaryMediumDark.args = {
   color: "secondaryColor",
   theme: "dark",
   textColor: "boxBackgroundColor",
-  border: true,
+  border: false,
+  borderColor: "",
+  children: "Dark Button",
 };
 
 export const BorderLargeDark = ButtonCp.bind({});
@@ -127,4 +144,5 @@ BorderLargeDark.args = {
   textColor: "textColor",
   border: true,
   borderColor: "lightGrayColor",
+  children: "Dark Button",
 };

@@ -114,9 +114,15 @@ const AdminPage = () => {
 
   return (
     <ThemeProvider theme={themeColors[theme]}>
-      <button onClick={toggleTheme}>
-        Toggle Theme to {theme === "light" ? "Dark" : "Light"}
-      </button>
+      <Button
+        onClick={toggleTheme}
+        size="medium"        
+        bgColor={themeColors[theme].secondaryColor}
+        textColor={themeColors[theme].textColor}
+        border={false}
+      >
+        테마 변경
+      </Button>
       <GlobalStyle />
       <div>
         <Container>
@@ -150,16 +156,22 @@ const AdminPage = () => {
 
               <ButtonContainer>
                 <Button
-                  size="large"
-                  color="boxBackgroundColor"
-                  textColor={themeColors[theme].boxBackgroundColor} // textColor 직접 전달
+                  size="large"                  
+                  bgColor={themeColors[theme].boxBackgroundColor}
+                  textColor={themeColors[theme].textColor}
                   border={true}
-                  borderColor="lightGrayColor"
+                  borderColor={themeColors[theme].lightGrayColor}
                 >
                   취소
                 </Button>
 
-                <Button size="large" color="primaryColor" border={false}>
+                <Button
+                  size="large"
+                  bgColor={themeColors[theme].primaryColor}
+                  textColor={themeColors[theme].boxBackgroundColor}
+                  border={false}
+                  borderColor=""
+                >
                   등록
                 </Button>
               </ButtonContainer>

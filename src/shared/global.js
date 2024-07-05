@@ -35,9 +35,9 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
-  background-color: ${(props) => props.theme.boxBackgroundColor};
-    color: ${(props) => props.theme.textColor};
-    transition: background-color 0.3s ease, color 0.3s ease;
+      background-color: ${(props) => props.theme.boxBackgroundColor};
+      color: ${(props) => props.theme.textColor};
+      transition: background-color 0.3s ease, color 0.3s ease;
       line-height: 1;
       font-family: 'Noto Sans KR', sans-serif;
   }

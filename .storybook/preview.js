@@ -1,4 +1,3 @@
-import { fontSizes } from "../src/tokens";
 import GlobalStyles from "../src/shared/global";
 
 export const decorators = [
@@ -17,9 +16,6 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
-    },
-    designTokens: {
-      fontSizes,
     },
   },
 };

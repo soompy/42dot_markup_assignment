@@ -18,3 +18,5 @@ export const fontSizes = {
     xLarge: "24px",
   },
 };
+
+export default fontSizes;

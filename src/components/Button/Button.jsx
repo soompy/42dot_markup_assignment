@@ -22,7 +22,6 @@ const sizes = {
     font-size: ${fontSizes.pc.large};
   `,
 };
-
 const StyledButton = styled.button`
   margin-left: ${(props) => margins[props.marginSize || "medium"]};
   border: ${(props) =>
@@ -30,7 +29,7 @@ const StyledButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   ${({ size }) => sizes[size]}
-  background-color: ${({ color, theme }) => theme[color]};
+  background-color: ${({ bgColor, theme }) => theme[bgColor] || bgColor};
   color: ${({ textColor, theme }) => textColor || theme.boxBackgroundColor};
   transition:
     background-color 0.3s,
@@ -39,6 +38,7 @@ const StyledButton = styled.button`
   &:first-of-type {
     margin-left: 0;
   }
+
   &:hover {
     opacity: 0.9;
     border-color: ${({ borderColor }) => borderColor};
@@ -66,7 +66,7 @@ const Button = ({
   return (
     <StyledButton
       size={size}
-      color={color}
+      bgColor={color}
       theme={colors}
       hasBorder={border}
       borderColor={borderColor}
