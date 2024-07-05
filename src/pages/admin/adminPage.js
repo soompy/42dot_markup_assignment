@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { createGlobalStyle, ThemeProvider } from "styled-components";
 import layouts from "../../tokens/layouts";
 import { fontSizes } from "../../tokens/fontSize";
@@ -69,6 +69,19 @@ const BottomContainer = styled.div`
   justify-content: space-between;
 `;
 
+const CheckedItemBox = styled.div`
+  display: ${(props) => (props.show ? "flex" : "none")};
+  align-items: center;
+  padding-bottom: ${(props) => paddings[props.paddingSize || "medium"]};
+  span {
+    margin-right: 8px;
+    background-color: ${(props) => props.theme.lightGrayColor};
+    color: ${(props) => props.theme.textColor};
+    padding: ${(props) => paddings[props.paddingSize || "small"]};
+    border-radius: 4px;
+  }
+`;
+
 const SwitchContainer = styled.div`
   display: flex;
   align-items: center;
@@ -100,6 +113,7 @@ const AdminPage = () => {
     items.reduce((acc, item) => ({ ...acc, [item]: false }), {})
   );
   const [switchChecked, setSwitchChecked] = useState(false);
+  const [showCheckedItems, setShowCheckedItems] = useState(false);
   const windowWidth = useWindowWidth();
   const mobileBreakpoint = parseInt(layouts.grid.breakpoints.mobile);
 
@@ -126,11 +140,22 @@ const AdminPage = () => {
       ...prevState,
       [item]: !prevState[item],
     }));
+
+    const anyChecked = Object.values({
+      ...checkedItems,
+      [item]: !checkedItems[item],
+    }).includes(true);
+    setShowCheckedItems(anyChecked);
   };
 
   const handleSwitchChange = () => {
     setSwitchChecked((prevChecked) => !prevChecked);
   };
+
+  useEffect(() => {
+    const anyChecked = Object.values(checkedItems).includes(true);
+    setShowCheckedItems(anyChecked);
+  }, [checkedItems]);
 
   return (
     <ThemeProvider theme={themeColors[theme]}>
@@ -165,6 +190,11 @@ const AdminPage = () => {
 
           <BoxContainer>
             <DivisionLabel labelText="역할" />
+            <CheckedItemBox show={showCheckedItems}>
+              {Object.keys(checkedItems).map(
+                (item) => checkedItems[item] && <span key={item}>{item}</span>
+              )}
+            </CheckedItemBox>
             <ListContainer
               items={items}
               checkedItems={checkedItems}
