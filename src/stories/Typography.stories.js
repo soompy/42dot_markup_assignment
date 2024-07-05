@@ -8,7 +8,7 @@ export default {
 export const FontSizes = () => (
   <div>
     {Object.keys(fontSizes).map((device) => (
-      <div key={device}>
+      <div key={device} style={{ marginBottom: "16px" }}>
         <h3>{device}</h3>
         {Object.entries(fontSizes[device]).map(([key, size]) => (
           <div key={key} style={{ fontSize: size }}>
