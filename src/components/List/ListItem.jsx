@@ -35,6 +35,7 @@ export const ListItem = ({ item, checked, onChange, theme, paddingSize }) => {
           onChange={() => onChange(item)}
           theme={theme}
           marginSize="small"
+          fillColor={theme.boxBackgroundColor}
         />
       </ListHead>
       <ListInside paddingSize={paddingSize}>
