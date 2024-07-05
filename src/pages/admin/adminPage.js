@@ -80,6 +80,11 @@ const ButtonContainer = styled.div`
   align-items: center;
 `;
 
+const isValidEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
 const AdminPage = () => {
   const items = [
     "계정 관리자1",
@@ -89,6 +94,7 @@ const AdminPage = () => {
     "계정 관리자5",
     "계정 관리자6",
   ];
+
   const [theme, setTheme] = useState("light");
   const [checkedItems, setCheckedItems] = useState(
     items.reduce((acc, item) => ({ ...acc, [item]: false }), {})
@@ -99,6 +105,20 @@ const AdminPage = () => {
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+  };
+
+  const [inputValue, setInputValue] = useState("");
+  const [isValid, setIsValid] = useState(undefined);
+
+  const handleInputChange = (e) => {
+    const value = e.target.value;
+    setInputValue(value);
+    setIsValid(isValidEmail(value));
+  };
+
+  const handleReset = () => {
+    setInputValue("");
+    setIsValid(undefined);
   };
 
   const handleItemChange = (item) => {
@@ -116,7 +136,7 @@ const AdminPage = () => {
     <ThemeProvider theme={themeColors[theme]}>
       <Button
         onClick={toggleTheme}
-        size="medium"        
+        size="medium"
         bgColor={themeColors[theme].secondaryColor}
         textColor={themeColors[theme].textColor}
         border={false}
@@ -130,7 +150,17 @@ const AdminPage = () => {
 
           <BoxContainer>
             <InputLabel labelText="이메일" />
-            <Input />
+            <Input
+              type="email"
+              placeholder="이메일을 입력하세요."
+              value={inputValue}
+              onChange={handleInputChange}
+              isValid={isValid}
+              resettable={true}
+              onReset={handleReset}
+              validationMessage="이메일 형식에 맞게 써주세요"
+              theme={theme}
+            />
           </BoxContainer>
 
           <BoxContainer>
@@ -156,7 +186,7 @@ const AdminPage = () => {
 
               <ButtonContainer>
                 <Button
-                  size="large"                  
+                  size="large"
                   bgColor={themeColors[theme].boxBackgroundColor}
                   textColor={themeColors[theme].textColor}
                   border={true}

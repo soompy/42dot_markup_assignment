@@ -4,13 +4,15 @@ import styled, { css } from "styled-components";
 import { themeColors } from "../../styles/colors";
 
 const InputContainer = styled.div`
-  position: relative;
   display: inline-block;
+  position: relative;
+  width: 100%;
 `;
 
 const StyledInput = styled.input`
+  width: 80%;
   padding: 8px;
-  border: 2px solid ${(props) => props.theme.primaryLightColor};
+  border: 2px solid ${(props) => props.theme.grayColor};
   background-color: ${(props) => props.theme.boxBackgroundColor};
   color: ${(props) => props.theme.textColor};
   border-radius: 4px;
@@ -18,10 +20,10 @@ const StyledInput = styled.input`
 
   &:hover {
     border-color: ${(props) => props.theme.primaryColor};
-    box-shadow: 2px 4px 4px -5px ${(props) => props.theme.lightGrayColor};
+    box-shadow: 4px 6px 6px -8px ${(props) => props.theme.lightGrayColor};
   }
 
-  &:focus {
+  &:focus {    
     border-color: ${(props) => props.theme.primaryColor};
   }
 
@@ -45,7 +47,7 @@ const StyledInput = styled.input`
 
 const ResetButton = styled.button`
   position: absolute;
-  right: 10px;
+  right: 20px;
   top: 50%;
   width: 20px;
   height: 20px;

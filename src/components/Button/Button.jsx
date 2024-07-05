@@ -31,6 +31,7 @@ const StyledButton = styled.button`
   ${({ size }) => sizes[size]}
   background-color: ${({ bgColor, theme }) => theme[bgColor] || bgColor};
   color: ${({ textColor, theme }) => textColor || theme.boxBackgroundColor};
+
   transition:
     background-color 0.3s,
     border-color 0.3s;
@@ -40,8 +41,9 @@ const StyledButton = styled.button`
   }
 
   &:hover {
-    opacity: 0.9;
-    border-color: ${({ borderColor }) => borderColor};
+    opacity: 0.9;    
+    border-color: ${({ theme, hasBorder, borderColor }) =>
+      hasBorder ? theme.borderColor : borderColor};
   }
 
   ${({ hasBorder }) =>
@@ -65,12 +67,11 @@ const Button = ({
 
   return (
     <StyledButton
-      size={size}
-      bgColor={color}
-      theme={colors}
+      size={size}  
+      bgColor={colors[color]}
+      textColor={textColor || colors.textColor}
       hasBorder={border}
       borderColor={borderColor}
-      textColor={textColor}
       {...props}
     >
       {children}
